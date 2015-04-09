@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 //
 
 var userController = require('./controllers/UserController.js');
+var taskController = require('./controllers/TaskController.js');
 
 //
 
@@ -61,7 +62,7 @@ llamaRoute.get(function(req, res) {
 
 router.get('/users', userController.getAll);
 router.post('/users', userController.post);
-router.options(function(req, res){
+router.options('/users', function(req, res){
   res.writeHead(200);
   res.end();
 });
@@ -70,6 +71,17 @@ router.get('/users/:id', userController.getOne);
 router.put('/users/:id', userController.putOne);
 router.delete('/users/:id', userController.deleteOne);
 
+
+router.get('/tasks', taskController.getAll);
+router.post('/tasks', taskController.post);
+router.options('/tasks', function(req, res){
+  res.writeHead(200);
+  res.end();
+});
+
+router.get('/tasks/:id', taskController.getOne);
+router.put('/tasks/:id', taskController.putOne);
+router.delete('/tasks/:id', taskController.deleteOne);
 
 //userRoute.get(userController.)
 
