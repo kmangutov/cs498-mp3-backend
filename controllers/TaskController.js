@@ -50,6 +50,11 @@ exports.putOne = function(req, res) {
     if(err) 
       return res.status(404).json(makeMessage("No such task!"));
 
+    if(req.body.name === undefined)
+      return res.status(400).json(makeMessage("Missing name!", req.body));
+    if(req.body.deadline === undefined)
+      return res.status(400).json(makeMessage("Missing deadline!", req.body));
+
     for(var key in req.body) {
 
       if(key !== "dateCreated")
